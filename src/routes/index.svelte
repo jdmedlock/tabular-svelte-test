@@ -1,6 +1,5 @@
 <script>
-	import { firstRowToDisplay } from '../stores/pagination.js';
-	import Tabular from '../components/Tabular.svelte'
+	import Tabular from 'tabular-svelte'
 	import { PersonData } from '../assets/testdata.js'
 	
 	// Called by the Tabular component to retrieve a specific ste to
@@ -28,7 +27,7 @@
 		]
 	}
 
-	firstRowToDisplay.reset(0)
+	//firstRowToDisplay.reset(0)
 </script>
 
 <svelte:head>
