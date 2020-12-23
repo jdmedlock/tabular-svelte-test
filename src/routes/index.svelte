@@ -10,7 +10,7 @@
 	const personRpt = {
 		dataSource: {
 			reader: getPersonData,
-			rowsPerPage: 4, // Specify -1 for all rows
+			rowsPerPage: 8, // Specify -1 for all rows
 			totalRows: PersonData.length,
 		},
 		columns: [
@@ -19,7 +19,7 @@
 			{ type: 'text', heading: 'Last Name', dataName: 'lastName' },
 			{ type: 'text', heading: 'First Name', dataName: 'firstName' },
 			{ type: 'pill', heading: 'Status', dataName: 'status',
-					decorators: [ 
+					styles: [ 
 						{ value: 'Active', pillColor: 'bg-green-400' },
 						{ value: 'Inactive', pillColor: 'bg-red-400' },
 					]
