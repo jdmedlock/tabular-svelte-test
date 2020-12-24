@@ -2,7 +2,7 @@
 	import Tabular from 'tabular-svelte'
 	import { PersonData } from '../assets/testdata.js'
 	
-	// Called by the Tabular component to retrieve a specific ste to
+	// Called by the Tabular component to retrieve a specific page of data
 	const getPersonData = ((startingRow, noRowsToGet) => {
 		return noRowsToGet > 0 ? PersonData.slice(startingRow, startingRow+noRowsToGet) : PersonData.slice(startingRow)
 	})
@@ -10,7 +10,7 @@
 	const personRpt = {
 		dataSource: {
 			reader: getPersonData,
-			rowsPerPage: 8, // Specify -1 for all rows
+			rowsPerPage: 10, // Specify -1 for all rows
 			totalRows: PersonData.length,
 		},
 		columns: [
@@ -26,8 +26,6 @@
 			}
 		]
 	}
-
-	//firstRowToDisplay.reset(0)
 </script>
 
 <svelte:head>
