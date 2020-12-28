@@ -3,8 +3,36 @@
 	import { PersonData } from '../assets/testdata.js'
 	
 	// Called by the Tabular component to retrieve a specific page of data
-	const getPersonData = ((startingRow, noRowsToGet) => {
-		return noRowsToGet > 0 ? PersonData.slice(startingRow, startingRow+noRowsToGet) : PersonData.slice(startingRow)
+	// Sort options = {order: 'ASC'|'DESC', dataName: 'attribute-name'}
+	const getPersonData = ((startingRow, noRowsToGet, sortOptions) => {
+		const getRows = (dataArray) => 
+			noRowsToGet > 0 ? dataArray.slice(startingRow, startingRow+noRowsToGet) : dataArray.slice(startingRow)
+
+		const propAscComparator = (columnName) =>
+			(a, b) => {
+				return a[columnName] === b[columnName] ? 0 : a[columnName] > b[columnName] ? -1 : 1
+		}
+
+		const propDescComparator = (columnName) =>
+			(a, b) => {
+				return a[columnName] === b[columnName] ? 0 : a[columnName] < b[columnName] ? -1 : 1
+    }
+
+		if (sortOptions !== undefined) {
+			let sortedData
+			switch (sortOptions.order) {
+				case 'ASC':
+					sortedData = PersonData.sort(propAscComparator(sortOptions.dataName))
+					break
+				case 'DESC':
+					sortedData = PersonData.sort(propDescComparator(sortOptions.dataName))
+					break
+				default:
+					throw new Error('Invalid sort option specified')
+			}
+			return getRows(sortedData)
+		}		
+		return getRows(PersonData)
 	})
 
 	const personRpt = {
