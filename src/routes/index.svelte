@@ -10,13 +10,17 @@
 
 		const propAscComparator = (columnName) =>
 			(a, b) => {
-				return a[columnName] === b[columnName] ? 0 : a[columnName] > b[columnName] ? -1 : 1
-		}
+				const aValue = a[columnName].toUpperCase()
+				const bValue = b[columnName].toUpperCase()
+				return aValue === bValue ? 0 : aValue < bValue ? -1 : 1
+			}
 
 		const propDescComparator = (columnName) =>
 			(a, b) => {
-				return a[columnName] === b[columnName] ? 0 : a[columnName] < b[columnName] ? -1 : 1
-    }
+				const aValue = a[columnName].toUpperCase()
+				const bValue = b[columnName].toUpperCase()
+				return aValue === bValue ? 0 : aValue > bValue ? -1 : 1
+    	}
 
 		if (sortOptions !== undefined) {
 			let sortedData
