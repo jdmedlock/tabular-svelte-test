@@ -15,10 +15,16 @@ const mode = process.env.NODE_ENV;
 const dev = mode === 'development';
 const legacy = !!process.env.SAPPER_LEGACY_BUILD;
 
-const onwarn = (warning, onwarn) =>
-	(warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)) ||
-	(warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) ||
-	onwarn(warning);
+const onwarn = (warning, onwarn) => {
+	const isMissingExport = warning.code === 'MISSING_EXPORT' && /'preload'/.test(warning.message)
+  const isCircularWarning = warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message); // only for @sapper
+  const isOnBlurInsteadOfOnChangeWarning = warning.code === 'PLUGIN_WARNING' && warning.pluginCode && warning.pluginCode === 'a11y-no-onchange';
+
+	return isMissingExport 
+		|| isCircularWarning
+    || isOnBlurInsteadOfOnChangeWarning
+    || onwarn(warning);
+}
 
 export default {
 	client: {
