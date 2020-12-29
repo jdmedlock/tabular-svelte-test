@@ -48,8 +48,8 @@
 		columns: [
 			{ type: 'image', heading: 'Avatar', dataName: 'avatarImg' },
 			{ type: 'text', heading: 'email', dataName: 'email' },
-			{ type: 'text', heading: 'Last Name', dataName: 'lastName' },
 			{ type: 'text', heading: 'First Name', dataName: 'firstName' },
+			{ type: 'text', heading: 'Last Name', dataName: 'lastName' },
 			{ type: 'pill', heading: 'Status', dataName: 'status',
 					styles: [ 
 						{ value: 'Active', pillColor: 'bg-green-400' },
